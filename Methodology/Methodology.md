@@ -90,6 +90,27 @@ After each conducted attack, we can have one of the 3 scenarios:
 Here follows the attacks list.
 
 ---
+
+### 0. Initial Full Port Scan
+
+**Name:** `nmap-full-portscan`  
+**Target port:** 1-65535 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name nmap-full-portscan --dst-ip <dst-ip> --dst-port 1-65535
+```
+
+```bash
+nmap -p- <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+---
 ## Metasploitable 2
 
 note: More attacks will be added before the infrastructure is ready.
@@ -98,6 +119,22 @@ note: More attacks will be added before the infrastructure is ready.
 
 **Name:** `ms2-rservices-revshell`  
 **Target port:** 513 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name ms2-rservices-portscan --dst-ip <dst-ip> --dst-port 513
+```
+
+```bash
+nmap -p 513 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
 
 ```bash
 attacklog start --name ms2-rservices-revshell --dst-ip <dst-ip> --dst-port 513
@@ -117,6 +154,22 @@ attacklog end --status <success|ran|error>
 
 **Name:** `ms2-unrealircd-revshell`  
 **Target port:** 6667 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name ms2-unrealircd-portscan --dst-ip <dst-ip> --dst-port 6667
+```
+
+```bash
+nmap -p 6667 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
 
 ```bash
 attacklog start --name ms2-unrealircd-revshell --dst-ip <dst-ip> --dst-port 6667
@@ -143,6 +196,22 @@ attacklog end --status <success|ran|error>
 **Name:** `ms2-dvwa-xss-reflected`  
 **Target port:** 80 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name ms2-dvwa-xss-reflected-portscan --dst-ip <dst-ip> --dst-port 80
+```
+
+```bash
+nmap -p 80 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name ms2-dvwa-xss-reflected --dst-ip <dst-ip> --dst-port 80
 ```
@@ -167,6 +236,22 @@ attacklog end --status <success|ran|error>
 
 **Name:** `ms2-dvwa-xss-stored`  
 **Target port:** 80 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name ms2-dvwa-xss-stored-portscan --dst-ip <dst-ip> --dst-port 80
+```
+
+```bash
+nmap -p 80 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
 
 ```bash
 attacklog start --name ms2-dvwa-xss-stored --dst-ip <dst-ip> --dst-port 80
@@ -199,6 +284,22 @@ attacklog end --status <success|ran|error>
 **Name:** `ms2-dvwa-cmdinject`  
 **Target port:** 80 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name ms2-dvwa-cmdinject-portscan --dst-ip <dst-ip> --dst-port 80
+```
+
+```bash
+nmap -p 80 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name ms2-dvwa-cmdinject --dst-ip <dst-ip> --dst-port 80
 ```
@@ -228,6 +329,22 @@ attacklog end --status <success|ran|error>
 **Name:** `ms2-dvwa-lfi`  
 **Target port:** 80 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name ms2-dvwa-lfi-portscan --dst-ip <dst-ip> --dst-port 80
+```
+
+```bash
+nmap -p 80 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name ms2-dvwa-lfi --dst-ip <dst-ip> --dst-port 80
 ```
@@ -248,6 +365,22 @@ attacklog end --status <success|ran|error>
 
 **Name:** `ms2-dvwa-sqli-manual`  
 **Target port:** 80 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name ms2-dvwa-sqli-manual-portscan --dst-ip <dst-ip> --dst-port 80
+```
+
+```bash
+nmap -p 80 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
 
 ```bash
 attacklog start --name ms2-dvwa-sqli-manual --dst-ip <dst-ip> --dst-port 80
@@ -289,6 +422,22 @@ attacklog end --status <success|ran|error>
 
 **Name:** `ms2-mutillidae-sqlmap`  
 **Target port:** 80 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name ms2-mutillidae-sqlmap-portscan --dst-ip <dst-ip> --dst-port 80
+```
+
+```bash
+nmap -p 80 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
 
 ```bash
 attacklog start --name ms2-mutillidae-sqlmap --dst-ip <dst-ip> --dst-port 80
@@ -346,6 +495,22 @@ note: More attacks will be added before the infrastructure is ready.
 **Name:** `ms3-glassfish-revshell`  
 **Target port:** 4848 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name ms3-glassfish-portscan --dst-ip <dst-ip> --dst-port 4848
+```
+
+```bash
+nmap -p 4848 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name ms3-glassfish-revshell --dst-ip <dst-ip> --dst-port 4848
 ```
@@ -388,6 +553,22 @@ attacklog end --status <success|ran|error>
 **Name:** `ms3-jenkins-revshell`  
 **Target port:** 8484 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name ms3-jenkins-portscan --dst-ip <dst-ip> --dst-port 8484
+```
+
+```bash
+nmap -p 8484 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name ms3-jenkins-revshell --dst-ip <dst-ip> --dst-port 8484
 ```
@@ -414,6 +595,22 @@ attacklog end --status <success|ran|error>
 **Name:** `ms3-iis-http-dos`  
 **Target port:** 80 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name ms3-iis-http-dos-portscan --dst-ip <dst-ip> --dst-port 80
+```
+
+```bash
+nmap -p 80 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name ms3-iis-http-dos --dst-ip <dst-ip> --dst-port 80
 ```
@@ -435,6 +632,22 @@ attacklog end --status <success|ran|error>
 
 **Name:** `ms3-iis-ftp-wordlist`  
 **Target port:** 21 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name ms3-iis-ftp-wordlist-portscan --dst-ip <dst-ip> --dst-port 21
+```
+
+```bash
+nmap -p 21 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
 
 ```bash
 attacklog start --name ms3-iis-ftp-wordlist --dst-ip <dst-ip> --dst-port 21
@@ -461,6 +674,22 @@ attacklog end --status <success|ran|error>
 **Name:** `ms3-elasticsearch-revshell`  
 **Target port:** 9200 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name ms3-elasticsearch-portscan --dst-ip <dst-ip> --dst-port 9200
+```
+
+```bash
+nmap -p 9200 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name ms3-elasticsearch-revshell --dst-ip <dst-ip> --dst-port 9200
 ```
@@ -486,6 +715,22 @@ attacklog end --status <success|ran|error>
 **Name:** `ms3-snmp-enum`  
 **Target port:** 161 / UDP
 
+**Port Scan:**
+
+```bash
+attacklog start --name ms3-snmp-portscan --dst-ip <dst-ip> --dst-port 161 --protocol udp
+```
+
+```bash
+nmap -sU -p 161 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name ms3-snmp-enum --dst-ip <dst-ip> --dst-port 161 --protocol udp
 ```
@@ -509,6 +754,22 @@ attacklog end --status <success|ran|error>
 
 **Name:** `ms3-jmx-revshell`  
 **Target port:** 1617 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name ms3-jmx-portscan --dst-ip <dst-ip> --dst-port 1617
+```
+
+```bash
+nmap -p 1617 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
 
 ```bash
 attacklog start --name ms3-jmx-revshell --dst-ip <dst-ip> --dst-port 1617
@@ -543,6 +804,22 @@ More attacks will be added before the infrastructure is ready.
 
 **Name:** `vulnhub-flask-ssti`  
 **Target port:** 8000 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name vulnhub-flask-ssti-portscan --dst-ip <dst-ip> --dst-port 8000
+```
+
+```bash
+nmap -p 8000 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
 
 ```bash
 attacklog start --name vulnhub-flask-ssti --dst-ip <dst-ip> --dst-port 8000
@@ -605,6 +882,22 @@ attacklog end --status <success|ran|error>
 **Name:** `vulnhub-airflow-cve-2020-11978`  
 **Target port:** 8080 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name vulnhub-airflow-cve-2020-11978-portscan --dst-ip <dst-ip> --dst-port 8080
+```
+
+```bash
+nmap -p 8080 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name vulnhub-airflow-cve-2020-11978 --dst-ip <dst-ip> --dst-port 8080
 ```
@@ -653,6 +946,22 @@ attacklog end --status <success|ran|error>
 
 **Name:** `vulnhub-airflow-cve-2020-11981`  
 **Target port:** 6379 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name vulnhub-airflow-cve-2020-11981-portscan --dst-ip <dst-ip> --dst-port 6379
+```
+
+```bash
+nmap -p 6379 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
 
 ```bash
 attacklog start --name vulnhub-airflow-cve-2020-11981 --dst-ip <dst-ip> --dst-port 6379
@@ -708,6 +1017,22 @@ attacklog end --status <success|ran|error>
 **Name:** `vulnhub-1panel-cve-2024-39907`  
 **Target port:** 10086 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name vulnhub-1panel-cve-2024-39907-portscan --dst-ip <dst-ip> --dst-port 10086
+```
+
+```bash
+nmap -p 10086 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name vulnhub-1panel-cve-2024-39907 --dst-ip <dst-ip> --dst-port 10086
 ```
@@ -759,6 +1084,22 @@ attacklog end --status <success|ran|error>
 
 **Name:** `vulnhub-activemq-cve-2022-41678`  
 **Target port:** 8161 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name vulnhub-activemq-cve-2022-41678-portscan --dst-ip <dst-ip> --dst-port 8161
+```
+
+```bash
+nmap -p 8161 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
 
 ```bash
 attacklog start --name vulnhub-activemq-cve-2022-41678 --dst-ip <dst-ip> --dst-port 8161
@@ -860,6 +1201,22 @@ python3 poc.py -u admin -p admin --exploit jfr http://localhost:8161
 **Name:** `vulnhub-activemq-cve-2026-34197`  
 **Target port:** 8161 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name vulnhub-activemq-cve-2026-34197-portscan --dst-ip <dst-ip> --dst-port 8161
+```
+
+```bash
+nmap -p 8161 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name vulnhub-activemq-cve-2026-34197 --dst-ip <dst-ip> --dst-port 8161
 ```
@@ -952,6 +1309,22 @@ Content-Length: 220
 **Name:** `vulnhub-airflow-cve-2020-17526`  
 **Target port:** 8080 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name vulnhub-airflow-cve-2020-17526-portscan --dst-ip <dst-ip> --dst-port 8080
+```
+
+```bash
+nmap -p 8080 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name vulnhub-airflow-cve-2020-17526 --dst-ip <dst-ip> --dst-port 8080
 ```
@@ -1018,6 +1391,22 @@ After generated session cookie, insert it in: inspect -> application -> Cookies 
 **Name:** `vulnhub-aj-report-cnvd-2024-15077`  
 **Target port:** 9095 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name vulnhub-aj-report-cnvd-2024-15077-portscan --dst-ip <dst-ip> --dst-port 9095
+```
+
+```bash
+nmap -p 9095 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name vulnhub-aj-report-cnvd-2024-15077 --dst-ip <dst-ip> --dst-port 9095
 ```
@@ -1062,6 +1451,22 @@ attacklog end --status <success|ran|error>
 
 **Name:** `vulnhub-apache-cxf-cve-2024-28752`  
 **Target port:** 8080 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name vulnhub-apache-cxf-cve-2024-28752-portscan --dst-ip <dst-ip> --dst-port 8080
+```
+
+```bash
+nmap -p 8080 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
 
 ```bash
 attacklog start --name vulnhub-apache-cxf-cve-2024-28752 --dst-ip <dst-ip> --dst-port 8080
@@ -1141,6 +1546,22 @@ Content-Disposition: form-data; name="1"\r
 **Name:** `vulnhub-apache-druid-cve-2021-25646`  
 **Target port:** 8888 / TCP
 
+**Port Scan:**
+
+```bash
+attacklog start --name vulnhub-apache-druid-cve-2021-25646-portscan --dst-ip <dst-ip> --dst-port 8888
+```
+
+```bash
+nmap -p 8888 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
+
 ```bash
 attacklog start --name vulnhub-apache-druid-cve-2021-25646 --dst-ip <dst-ip> --dst-port 8888
 ```
@@ -1218,6 +1639,22 @@ attacklog end --status <success|ran|error>
 
 **Name:** `vulnhub-apisix-cve-2020-13945`  
 **Target port:** 9080 / TCP
+
+**Port Scan:**
+
+```bash
+attacklog start --name vulnhub-apisix-cve-2020-13945-portscan --dst-ip <dst-ip> --dst-port 9080
+```
+
+```bash
+nmap -p 9080 <dst-ip>
+```
+
+```bash
+attacklog end --status ran
+```
+
+**Conducting the attack:**
 
 ```bash
 attacklog start --name vulnhub-apisix-cve-2020-13945 --dst-ip <dst-ip> --dst-port 9080
